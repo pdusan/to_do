@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.todo.pd.todo.enums.Status;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -24,19 +26,26 @@ public class CardService {
         return repository.findAll();
     }
 
-    public void addCard() {
-
+    public void addCard(String description) {
+        repository.save(new Card(description));
     }
 
-    public void removeCard() {
-
+    public List<Card> removeCard(Long id) {
+        repository.deleteById(id);
+        return repository.findAll();
     }
 
-    public void updateStatus() {
-
+    public List<Card> updateStatus(Long id) {
+        Card card = repository.findById(id).get();
+        card.setStatus(Status.DONE);
+        repository.save(card);
+        return repository.findAll();
     }
 
-    public void updateDescription() {
-
+    public List<Card> updateDescription(String description, Long id) {
+        Card card = repository.findById(id).get();
+        card.setDescription(description);
+        repository.save(card);
+        return repository.findAll();
     }
 }
