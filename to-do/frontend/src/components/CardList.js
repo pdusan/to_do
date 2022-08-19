@@ -55,7 +55,7 @@ class CardList extends Component {
             <ButtonGroup>
               <Button
                 size="sm"
-                color="primary"
+                className="btn btn-primary"
                 tag={Link}
                 to={"/cards/" + card.id}
               >
@@ -63,7 +63,7 @@ class CardList extends Component {
               </Button>
               <Button
                 size="sm"
-                color="danger"
+                className="btn btn-danger"
                 onClick={() => this.remove(card.id)}
               >
                 Delete
@@ -78,8 +78,12 @@ class CardList extends Component {
       <div>
         <AppNavbar />
         <Container fluid>
-          <div className="float-right">
-            <Button color="success" tag={Link} to="/cards/TestDescription">
+          <div className="float-end">
+            <Button
+              className="btn btn-success"
+              tag={Link}
+              to="/cards/TestDescription"
+            >
               Add a Card
             </Button>
           </div>
