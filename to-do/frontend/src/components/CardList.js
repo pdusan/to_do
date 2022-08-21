@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
+import AddCard from "./AddCard";
 import AppNavbar from "./AppNavbar";
 import Card from "./Card";
 
@@ -13,6 +13,8 @@ export default function CardList() {
     },
     _links: {},
   });
+
+  const [addShown, isAddShown] = useState(false);
 
   useEffect(() => {
     fetch("/cards")
@@ -42,11 +44,17 @@ export default function CardList() {
   return (
     <div>
       <AppNavbar />
+      {addShown && <AddCard />}
       <Container fluid>
         <div className="float-end">
-          <Link to="/cards-add">
-            <Button className="btn btn-success">Add a Card</Button>
-          </Link>
+          <Button
+            className="btn btn-success"
+            onClick={() => {
+              isAddShown((s) => !s);
+            }}
+          >
+            Add a Card
+          </Button>
         </div>
         <h3>Cards</h3>
         <Table className="mt-4">
