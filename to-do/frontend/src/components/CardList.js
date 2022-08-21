@@ -20,7 +20,7 @@ export default function CardList() {
     fetch("/cards")
       .then((response) => response.json())
       .then((data) => updateCards(data));
-  }, []);
+  }, [addShown]);
 
   const removeFunc = async function remove(id) {
     await fetch(`/cards/${id}`, {
@@ -44,7 +44,7 @@ export default function CardList() {
   return (
     <div>
       <AppNavbar />
-      {addShown && <AddCard />}
+      <AddCard shouldShow={addShown} switchShown={isAddShown} />
       <Container fluid>
         <div className="float-end">
           <Button
