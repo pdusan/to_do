@@ -79,13 +79,9 @@ class CardList extends Component {
         <AppNavbar />
         <Container fluid>
           <div className="float-end">
-            <Button
-              className="btn btn-success"
-              tag={Link}
-              to="/cards/TestDescription"
-            >
-              Add a Card
-            </Button>
+            <Link to="/cards-add">
+              <Button className="btn btn-success">Add a Card</Button>
+            </Link>
           </div>
           <h3>Cards</h3>
           <Table className="mt-4">
