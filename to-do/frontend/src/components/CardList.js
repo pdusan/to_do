@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Table from "react-bootstrap/Table";
 import AddCard from "./AddCard";
 import AppNavbar from "./AppNavbar";
 import Card from "./Card";
@@ -48,7 +47,7 @@ export default function CardList() {
       <Container fluid>
         <div className="float-end">
           <Button
-            className="btn btn-success"
+            className="btn btn-primary"
             onClick={() => {
               isAddShown((s) => !s);
             }}
@@ -57,20 +56,11 @@ export default function CardList() {
           </Button>
         </div>
         <h3>Cards</h3>
-        <Table className="mt-4">
-          <thead>
-            <tr>
-              <th width="30%">Description</th>
-              <th width="30%">Status</th>
-              <th width="40%">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cardList.map((card) => {
-              return <Card item={card} key={card.id} removeFunc={removeFunc} />;
-            })}
-          </tbody>
-        </Table>
+        <ul>
+          {cardList.map((card) => {
+            return <Card item={card} key={card.id} removeFunc={removeFunc} />;
+          })}
+        </ul>
       </Container>
     </div>
   );

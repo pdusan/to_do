@@ -1,26 +1,32 @@
-import { Button, ButtonGroup } from "reactstrap";
+import { Button } from "reactstrap";
 
 export default function Card({ item, removeFunc }) {
   return (
-    <tr>
-      <td style={{ whiteSpace: "nowrap" }}>{item.description}</td>
-      <td>{item.status}</td>
-      <td>
-        <ButtonGroup>
-          <Button size="sm" className="btn btn-primary">
-            Edit
-          </Button>
-          <Button
-            size="sm"
-            className="btn btn-danger"
-            onClick={() => {
-              removeFunc(item.id);
-            }}
-          >
-            Delete
-          </Button>
-        </ButtonGroup>
-      </td>
-    </tr>
+    <li
+      className="card"
+      style={{ width: "20rem", height: "10rem", display: "inline-block" }}
+    >
+      <h5 className="card-header">To Do:</h5>
+      <div
+        className="card-text"
+        style={{ whiteSpace: "nowrap", height: "50%" }}
+      >
+        {item.description}
+      </div>
+      <div>
+        <Button size="sm" className="btn btn-success">
+          Done
+        </Button>
+        <Button
+          size="sm"
+          className="btn btn-danger float-end"
+          onClick={() => {
+            removeFunc(item.id);
+          }}
+        >
+          Delete
+        </Button>
+      </div>
+    </li>
   );
 }
