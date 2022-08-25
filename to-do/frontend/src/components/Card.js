@@ -1,6 +1,16 @@
 import { Button } from "reactstrap";
 
 export default function Card({ item, removeFunc }) {
+  async function complete() {
+    await fetch(item._links.complete.href, {
+      method: "PUT",
+      headers: {
+        accept: "application/json",
+        "Content-type": "application/json",
+      },
+    });
+  }
+
   return (
     <li
       className="card"
@@ -14,7 +24,7 @@ export default function Card({ item, removeFunc }) {
         {item.description}
       </div>
       <div>
-        <Button size="sm" className="btn btn-success">
+        <Button size="sm" className="btn btn-success" onClick={complete}>
           Done
         </Button>
         <Button
