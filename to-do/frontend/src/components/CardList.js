@@ -19,12 +19,19 @@ export default function CardList() {
     cards._embedded.cardList.filter((card) => card.status === "DONE").length
   );
 
+  //TODO: Maybe use useReducer here?
   useEffect(() => {
     fetch("/cards")
       .then((response) => response.json())
       .then((data) => {
         updateCards(data);
-      });
+      })
+      .then(
+        updateDoneCount(
+          cards._embedded.cardList.filter((card) => card.status === "DONE")
+            .length
+        )
+      );
 
     const unloadCallback = (event) => {
       event.preventDefault();
